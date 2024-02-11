@@ -1,0 +1,20 @@
+steps:
+# First Clone from GitHub Repository
+- name: 'gcr.io/cloud-builders/git'
+  args: ['clone', 'https://github.com/Ankit-Deswal/multi-container-app.git']
+  dir: '/workspace'
+
+# Build the image
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+    - 'build'
+    - '--tag'
+    - 'gcr.io/logical-light-411605/multi-container-app.git'
+    - '.'
+  dir: '/workspace/GCPBuild'
+
+# Push the image
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+    - 'push'
+    - 'gcr.io/logical-light-411605/multi-container-app.git'
